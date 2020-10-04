@@ -35,3 +35,7 @@ brew services
 kafka             started deus /Users/deus/Library/LaunchAgents/homebrew.mxcl.kafka.plist
 zookeeper         started deus /Users/deus/Library/LaunchAgents/homebrew.mxcl.zookeeper.plist
 
+```
+Error:java.lang.IllegalStateException: This error handler cannot process 'SerializationException's directly; please consider configuring an 'ErrorHandlingDeserializer' in the value and/or key deserializer
+Link: https://www.confluent.io/blog/spring-kafka-can-your-kafka-consumers-handle-a-poison-pill/
+```
