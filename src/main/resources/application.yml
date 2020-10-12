@@ -1,3 +1,14 @@
 server:
   port: 9090
 
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          auto-create-topics: true
+          brokers:
+            - localhost:9092
+      bindings.susbcriptionorders:
+        destination: fs.checkout.subscription.orders
+        contentType: "application/json"

@@ -39,3 +39,33 @@ zookeeper         started deus /Users/deus/Library/LaunchAgents/homebrew.mxcl.zo
 Error:java.lang.IllegalStateException: This error handler cannot process 'SerializationException's directly; please consider configuring an 'ErrorHandlingDeserializer' in the value and/or key deserializer
 Link: https://www.confluent.io/blog/spring-kafka-can-your-kafka-consumers-handle-a-poison-pill/
 ```
+
+## Highlights of this new version
+
+Enabled spring cloud messaging with kafka binder.
+Key advantage is the code looks really simple compared to the one with kafka consumer configuration. 
+
+* Create an interface. Add a method and annotate it with @Input and return type SubscribableChannel. SubscribableChannel has subscribe and unsubscribe methods
+* Create a class. Annotate with @Component. Write a method that accepts the pojo annotated with @Payload and method is annotated with @StreamListener(INBOUND_CHANNEL_NAME)
+* That's it. The method receives a message whenever a message arrives to the topic
+* Here is how topic is configured
+  ```
+  spring:
+    cloud:
+      stream:
+        kafka:
+          binder:
+            auto-create-topics: true # tell kafka to auto create topic
+            brokers:
+              - localhost:9092 # list of kafka binders
+        bindings.susbcriptionorders: # can be any name here. this should be in @Input annotation 
+          destination: fs.checkout.subscription.orders # name of topic
+          contentType: "application/json" # this makes the message is convered from json to pojo 
+  ```
+  * The interface has to be mentioned in the binder config as below. This causes a proxy instance to be created and available by the container.
+  ```
+  @EnableBinding(CsvStreams.class)
+  public class CsvStreamsConfig {
+  
+  }
+  ```

@@ -25,7 +25,8 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.kafka:spring-kafka'
+	implementation 'org.springframework.cloud:spring-cloud-stream'
+	implementation 'org.springframework.cloud:spring-cloud-starter-stream-kafka'
 	implementation 'com.opencsv:opencsv:5.0'
 
 	compileOnly 'org.projectlombok:lombok'
