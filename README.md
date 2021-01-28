@@ -1,3 +1,6 @@
+## LGTM
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/cricketbackground/csv-datalogger.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cricketbackground/csv-datalogger/alerts/)
+
 ## What this app does?
 
 Listens to kafka topic "test". 
